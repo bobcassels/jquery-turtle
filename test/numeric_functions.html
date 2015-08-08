@@ -70,6 +70,11 @@ asyncTest("Tests special values of functions.", function() {
   ok(atand(-Infinity, 1) === -90);
   ok(atand(-1, -1) === -135);
 
+  ok(log(1) === 0);
+  ok(log(10, 10) === 1);
+  ok(log(0.01, 10) === -2);
+  ok(log(32, 2) == 5);
+
   done(function() {
     start();
   });

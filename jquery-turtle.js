@@ -8260,13 +8260,19 @@ var dollar_turtle_methods = {
   exp: wrapraw('exp',
   ["<u>exp(x)</u> Raise e to the power x. " +
       "<mark>see exp 2</mark>"], Math.exp),
-  ln: wrapraw('ln',
-  ["<u>ln(x)</u> The natural logarithm of x. " +
-      "<mark>see ln 2</mark>"], Math.log),
-  log10: wrapraw('log10',
-  ["<u>log10(x)</u> The base 10 logarithm of x. " +
-      "<mark>see log10 0.01</mark>"],
-  function log10(x) { return roundEpsilon(Math.log(x) * Math.LOG10E); }),
+  log: wrapraw('log',
+  ["<u>log(x, b)</u> The logarithm base b of x. " +
+      "Or natural logarithm if b is not specified." +
+      "<mark>see log 0.01 10</mark>"],
+  function log(x, b) {
+      if (b === undefined) {
+          return Math.log(x);
+      } else if (b == 10) {
+          return roundEpsilon(Math.log(x) * Math.LOG10E);
+      } else {
+          return roundEpsilon(Math.log(x) / Math.log(b));
+      }
+  }),
   pow: wrapraw('pow',
   ["<u>pow(x, y)</u> Raise x to the power y. " +
       "<mark>see pow 4, 1.5</mark>"],
